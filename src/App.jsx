@@ -6,9 +6,14 @@ import {
 } from '@chakra-ui/react'
 import { BrowserRouter, Routes, Route, Link as RouterLink, Navigate } from "react-router-dom";
 import { Login } from "./pages/Login"
-import Dashboard from './pages/Dashboard';
+import { Dashboard } from './pages/Dashboard';
+import { ProtectedRoute } from './pages/ProtectedRoute';
+import { useState } from 'react';
 
 function App() {
+
+  const [user, setUser] = useState("");
+
 
   return (
     <BrowserRouter>
@@ -30,11 +35,15 @@ function App() {
         </Flex>
 
         <Routes>
-          <Route path='login/*' element={<Login />} />
+          <Route path='login/*' element={<Login setUser={setUser} />} />
           <Route path='*' element={<Navigate to={"/login"} />} />
-
-          <Route path='dashboard' element={<Dashboard />}/>
-
+          <Route path='/dashboard'
+          element={
+            <ProtectedRoute user={user}>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+          />
         </Routes>
       </ChakraProvider>
     </BrowserRouter>

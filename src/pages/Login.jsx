@@ -1,34 +1,49 @@
-import { Box, Button, Checkbox, Container, FormControl, FormLabel, HStack, Heading, Input, Stack,} from "@chakra-ui/react"
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
+import { Box, Button, Checkbox, Container, FormControl, FormLabel, HStack, Heading, Input, Stack, useToast,} from "@chakra-ui/react"
 import { Logo } from '../logo'
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 // eslint-disable-next-line no-unused-vars
 export const Login = ((props) => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
-  const [datosUsername, setDatosUsername] = useState({username: ""});
-  const [datosPassword, setDatosPassword] = useState({password: ""});
-
-  const rellenarDatosUsername = (event) => {
+  const hanldeChange = (event) => {
+    const { name, value } = event.target;
     
-    setDatosUsername({...datosUsername, [event.target.name]: event.target.value})
-    
-  };
-
-  const rellenarDatosPassword = (event) => {
-    
-    setDatosPassword({...datosPassword, [event.target.name]: event.target.value})
+    if(name === "username") setUsername(value)
+    if(name === "password") setPassword(value)
     
   };
 
-  let navigate = useNavigate();
+  const toast = useToast()
+  const navigate = useNavigate();
 
-  const goToDashboard = () => {
+  const handleSubmit = () => {
 
-    if (datosUsername.username === "zelda" && datosPassword.password === "lightdragon") {
-
+    if (username === "zelda" && password === "lightdragon") {
       navigate("/dashboard");
-      console.log("oleeeeee");
+      
+      toast({
+        title: 'Correcto',
+        description: "Login",
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      })
+
+      props.setUser(username);
+
+    } else {
+      toast({
+        title: 'Error',
+        description: "Login incorrecto",
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+      })
     }
 
   }
@@ -85,11 +100,11 @@ export const Login = ((props) => {
           <Stack spacing="5">
             <FormControl>
               <FormLabel>Usuario</FormLabel>
-              <Input id="username" name="username" onChange={(event)=>{rellenarDatosUsername(event)}} />
+              <Input id="username" name="username" onChange={(event)=>{hanldeChange(event)}} />
             </FormControl>
             <FormControl>
               <FormLabel htmlFor="password">Contraseña</FormLabel>
-              <Input id="password" name="password" {...props} onChange={(event)=>{rellenarDatosPassword(event)}} />
+              <Input id="password" name="password" {...props} onChange={(event)=>{hanldeChange(event)}} />
             </FormControl>
           </Stack>
           <HStack justify="space-between">
@@ -99,7 +114,7 @@ export const Login = ((props) => {
             </Button>
           </HStack>
           <Stack spacing="6">
-            <Button onClick={()=>goToDashboard()}>Entrar</Button>
+              <Button onClick={handleSubmit}>Entrar</Button>
           </Stack>
         </Stack>
       </Box>

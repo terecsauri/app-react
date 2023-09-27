@@ -1,15 +1,15 @@
 import { Card, CardBody, CardHeader, Flex, Heading, Text } from "@chakra-ui/react";
 
+export const Dashboard = () => {
 
-export default function Dashboard() {
     return (
         <Flex>
             <Card align='center'>
                 <CardHeader>
-                    <Heading size='md'> Buenos días, </Heading>
+                    <Heading size='md'>Holaaaaaaa</Heading>
                 </CardHeader>
                 <CardBody>
-                    <Text>Acabas de iniciar sesión y tu contraseña es </Text>
+                    <Text>Acabas de iniciar sesión y tu contraseña es ¡viva la seguridad!</Text>
                 </CardBody>
             </Card>
         </Flex>
