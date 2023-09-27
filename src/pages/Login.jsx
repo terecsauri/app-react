@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import { Box, Button, Checkbox, Container, FormControl, FormLabel, HStack, Heading, Input, Stack, useToast,} from "@chakra-ui/react"
+import { Box, Button, Checkbox, Container, FormControl, FormLabel, HStack, Heading, Input, InputGroup, InputRightElement, Stack, useToast,} from "@chakra-ui/react"
 import { Logo } from '../logo'
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -9,6 +9,9 @@ import { useState } from "react";
 export const Login = ((props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [show, setShow] = useState(false)
+
+  const handleClick = () => setShow(!show)
 
   const hanldeChange = (event) => {
     const { name, value } = event.target;
@@ -107,13 +110,26 @@ export const Login = ((props) => {
             </FormControl>
             <FormControl>
               <FormLabel htmlFor="password">Contraseña</FormLabel>
-              <Input
-              borderColor={"purple.900"}
-              _hover={{
-                borderColor: "purple.900",
-                background: "purple.200",
-              }}
-              id="password" name="password" {...props} onChange={(event)=>{hanldeChange(event)}} />
+              <InputGroup>
+                  <Input
+                    type={show ? 'text' : 'password'}
+                    borderColor={"purple.900"}
+                    _hover={{
+                      borderColor: "purple.900",
+                      background: "purple.200",
+                    }}
+                    id="password" name="password" {...props} onChange={(event) => { hanldeChange(event) }} />
+                  <InputRightElement width='4.5rem'>
+                    <Button 
+                      background={"purple.50"}
+                      _hover={{
+                        background: "purple.300",
+                      }}
+                      h='1.75rem' size='sm' onClick={handleClick}>
+                      {show ? 'Hide' : 'Show'}
+                    </Button>
+                  </InputRightElement>
+              </InputGroup>
             </FormControl>
           </Stack>
           <HStack justify="space-between">
