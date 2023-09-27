@@ -50,10 +50,10 @@ export const Login = ((props) => {
 
   return(
     <Container
-    maxW="lg"
-    py={"8"}
-    px={"0"}
-  >
+      maxW="lg"
+      py={"8"}
+      px={"0"}
+    >
     <Stack spacing="8">
       <Stack spacing="6">
         <Logo />
@@ -83,10 +83,7 @@ export const Login = ((props) => {
           base: '4',
           sm: '10',
         }}
-        bg={{
-          base: 'transparent',
-          sm: 'bg.surface',
-        }}
+        bg={"purple.100"}
         boxShadow={{
           base: 'none',
           sm: 'md',
@@ -100,11 +97,23 @@ export const Login = ((props) => {
           <Stack spacing="5">
             <FormControl>
               <FormLabel>Usuario</FormLabel>
-              <Input id="username" name="username" onChange={(event)=>{hanldeChange(event)}} />
+              <Input
+              borderColor={"purple.900"}
+              _hover={{
+                borderColor: "purple.900",
+                background: "purple.200",
+              }}
+              id="username" name="username" onChange={(event)=>{hanldeChange(event)}} />
             </FormControl>
             <FormControl>
               <FormLabel htmlFor="password">Contraseña</FormLabel>
-              <Input id="password" name="password" {...props} onChange={(event)=>{hanldeChange(event)}} />
+              <Input
+              borderColor={"purple.900"}
+              _hover={{
+                borderColor: "purple.900",
+                background: "purple.200",
+              }}
+              id="password" name="password" {...props} onChange={(event)=>{hanldeChange(event)}} />
             </FormControl>
           </Stack>
           <HStack justify="space-between">
@@ -114,7 +123,12 @@ export const Login = ((props) => {
             </Button>
           </HStack>
           <Stack spacing="6">
-              <Button onClick={handleSubmit}>Entrar</Button>
+              <Button
+              background={"purple.50"}
+              _hover={{
+                background: "purple.300",
+              }}
+              onClick={handleSubmit}>Entrar</Button>
           </Stack>
         </Stack>
       </Box>
