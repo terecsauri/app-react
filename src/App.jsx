@@ -11,6 +11,7 @@ import { Login } from "./pages/Login"
 import Dashboard from './pages/Dashboard';
 import { ProtectedRoute } from './pages/ProtectedRoute';
 import { useState } from 'react';
+import { Profile } from './pages/Profile';
 
 function App() {
 
@@ -60,6 +61,13 @@ function App() {
           <Route path='*' element={<Navigate to={"/login"} />} />
           <Route path='dashboard' element={<ProtectedRoute user={user}/>}>
             <Route path="/dashboard" element={ <Dashboard /> }/>
+          </Route>
+          <Route path='profile' element={<ProtectedRoute user={user}/>}>
+            <Route path="/profile" element={ <Profile 
+            
+            
+
+            />  }/>
           </Route>
         </Routes>
       </ChakraProvider>
