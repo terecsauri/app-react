@@ -1,14 +1,21 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import { Box, Button, Checkbox, Container, FormControl, FormLabel, HStack, Heading, Input, InputGroup, InputRightElement, Stack, useToast,} from "@chakra-ui/react"
 import { Logo } from '../logo'
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-// eslint-disable-next-line no-unused-vars
 export const Login = ((props) => {
-  const [username, setUsername] = useState("");
+  const [usuarioEntero, setUsuarioEntero] = useState({});
+
+  const [usuario, setUsuario] = useState("");
+  const [correctUsername, setCorrectUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [correctPassword, setCorrectPassword] = useState("");
+
+  const [dataFetched, setDataFetched] = useState(false);
+
   const [show, setShow] = useState(false)
 
   const handleClick = () => setShow(!show)
@@ -16,7 +23,7 @@ export const Login = ((props) => {
   const hanldeChange = (event) => {
     const { name, value } = event.target;
     
-    if(name === "username") setUsername(value)
+    if(name === "username") setUsuario(value)
     if(name === "password") setPassword(value)
     
   };
@@ -24,9 +31,48 @@ export const Login = ((props) => {
   const toast = useToast()
   const navigate = useNavigate();
 
+  const userGet = async () => {
+    try {
+      const response = await fetch('https://randomuser.me/api/?results=1');
+      const data = await response.json();
+  
+      if (data.results && data.results.length > 0) {
+        const firstUser = data.results[0];
+        setUsuarioEntero(firstUser);
+        setCorrectUsername(firstUser.login.username);
+        setCorrectPassword(firstUser.login.password);
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  const initialized = useRef(false);
+
+  useEffect(() => {
+    if (!initialized.current) {
+      initialized.current = true
+  
+      userGet();
+      setDataFetched(true);
+
+    }
+  }, [])
+  
+  useEffect(() => {
+    console.log(correctUsername + ", " + correctPassword);
+    toast({
+      title: 'Datos de login',
+      description: correctUsername + ", " + correctPassword,
+      status: 'info',
+      duration: 100000000000,
+      isClosable: true,
+    });
+  }, [correctUsername, correctPassword]);
+  
   const handleSubmit = () => {
 
-    if (username === "zelda" && password === "lightdragon") {
+    if (usuario === correctUsername && password === correctPassword) {
       navigate("/dashboard");
       
       toast({
@@ -37,7 +83,7 @@ export const Login = ((props) => {
         isClosable: true,
       })
 
-      props.setUser(username);
+      props.setUser(correctUsername);
 
     } else {
       toast({

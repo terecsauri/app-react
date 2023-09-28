@@ -63,11 +63,7 @@ function App() {
             <Route path="/dashboard" element={ <Dashboard /> }/>
           </Route>
           <Route path='profile' element={<ProtectedRoute user={user}/>}>
-            <Route path="/profile" element={ <Profile 
-            
-            
-
-            />  }/>
+            <Route path="/profile" element={ <Profile />  }/>
           </Route>
         </Routes>
       </ChakraProvider>

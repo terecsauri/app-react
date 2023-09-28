@@ -14,9 +14,14 @@ export const Profile = () => {
             });
     }
 
-    useEffect(() => {
-        apiGet();
-    }, []);
+    const [dataFetched, setDataFetched] = useState(false);
+  
+  useEffect(() => {
+    if (!dataFetched) {
+      apiGet();
+      setDataFetched(true);
+    }
+  }, [dataFetched]);
 
     return (
         <Card>
