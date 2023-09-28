@@ -14,7 +14,7 @@ export const Login = ((props) => {
   const [password, setPassword] = useState("");
   const [correctPassword, setCorrectPassword] = useState("");
 
-  const [dataFetched, setDataFetched] = useState(false);
+  const [datosFetcheados, setDatosFetcheados] = useState(false);
 
   const [show, setShow] = useState(false)
 
@@ -53,46 +53,33 @@ export const Login = ((props) => {
     if (!initialized.current) {
       initialized.current = true
   
-      userGet();
-      setDataFetched(true);
-
+      userGet().then(() => {
+        setDatosFetcheados(true);
+      });
     }
   }, [])
   
   useEffect(() => {
+    if (datosFetcheados) {
     console.log(correctUsername + ", " + correctPassword);
     toast({
-      title: 'Datos de login',
+      title: 'Estos son los datos de login',
       description: correctUsername + ", " + correctPassword,
       status: 'info',
       duration: 100000000000,
       isClosable: true,
     });
-  }, [correctUsername, correctPassword]);
+    }
+  }, [correctUsername, correctPassword, datosFetcheados]);
   
   const handleSubmit = () => {
 
     if (usuario === correctUsername && password === correctPassword) {
       navigate("/dashboard");
-      
-      toast({
-        title: 'Correcto',
-        description: "Login",
-        status: 'success',
-        duration: 3000,
-        isClosable: true,
-      })
 
       props.setUser(correctUsername);
+      toast.closeAll();
 
-    } else {
-      toast({
-        title: 'Error',
-        description: "Login incorrecto",
-        status: 'error',
-        duration: 3000,
-        isClosable: true,
-      })
     }
 
   }
