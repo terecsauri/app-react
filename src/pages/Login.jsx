@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import { Box, Button, Checkbox, Container, FormControl, FormLabel, HStack, Heading, Input, InputGroup, InputRightElement, Stack, useToast,} from "@chakra-ui/react"
-import { Logo } from '../logo'
+import { Box, Button, Checkbox, Container, FormControl, FormLabel, HStack, Heading, Image, Input, InputGroup, InputRightElement, Stack, useToast,} from "@chakra-ui/react"
 import { useNavigate } from "react-router-dom";
+import starFall from "../../public/star-fall-svgrepo-com.svg"
 import { useEffect, useRef, useState } from "react";
 
 export const Login = ((props) => {
@@ -85,14 +85,21 @@ export const Login = ((props) => {
   }
 
   return(
-    <Container
-      maxW="lg"
+    <Box
+      boxSize={"full"}
+      w={"100vw"}
+      h={"calc(100vh - 35.2px)"}
+      margin={"0"}
+      paddingTop={"0"}
       py={"8"}
       px={"0"}
+      display={"flex"}
+      justifyContent={"center"}
+      alignItems={"center"}
     >
-    <Stack spacing="8">
-      <Stack spacing="6">
-        <Logo />
+    <Stack maxW={"lg"} spacing="8">
+      <Stack spacing="2" display={"flex"} justifyContent={"center"} alignItems={"center"}>
+        <Image boxSize={"84px"} src={starFall} alt="estrellita" />
         <Stack
           spacing={{
             base: '2',
@@ -182,6 +189,6 @@ export const Login = ((props) => {
         </Stack>
       </Box>
     </Stack>
-  </Container>
+  </Box>
   )
 })

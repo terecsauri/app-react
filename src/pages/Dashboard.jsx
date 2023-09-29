@@ -6,12 +6,17 @@ export default function Dashboard() {
     const navigate = useNavigate();
 
     return (
-        <Flex>
-            <Card spacing="8" align='center'>
+        <Flex 
+        w={"100vw"}
+        h={"calc(100vh - 35.2px)"}
+        justify={"center"}
+        align={"center"}
+        >
+            <Card spacing="8" display={"flex"} flexDir={"column"} alignItems={'center'} justifyContent={"center"}>
                 <CardHeader>
                     <Heading size='md'>Buenos días</Heading>
                 </CardHeader>
-                <CardBody>
+                <CardBody display={"flex"} flexDir={"column"} alignItems={"center"} justifyContent={"center"}>
                     <Text>Acabas de iniciar sesión</Text>
                     <Text>Ahora puedes ir a tu perfil</Text>
                     <Button 
@@ -23,5 +28,5 @@ export default function Dashboard() {
                 </CardBody>
             </Card>
         </Flex>
-    )
+    );
 }

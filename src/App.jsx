@@ -20,7 +20,13 @@ function App() {
   return (
     <BrowserRouter>
       <ChakraProvider>
-        <Flex justify={'space-evenly'}>
+        <Box
+          bg="linear-gradient(45deg, #faaca8 10%, #ddd6f3 90%)"
+        >
+        <Flex justify={'space-evenly'} align={"center"}
+        margin="0"
+        padding="0"
+        >
           
           <Box bg={"purple.100"} borderRadius={"md"}
             _hover={{
@@ -66,6 +72,7 @@ function App() {
             <Route path="/profile" element={ <Profile />  }/>
           </Route>
         </Routes>
+        </Box>
       </ChakraProvider>
     </BrowserRouter>
   )
