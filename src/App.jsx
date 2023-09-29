@@ -10,20 +10,29 @@ import { BrowserRouter, Routes, Route, Link as RouterLink, Navigate } from "reac
 import { Login } from "./pages/Login"
 import Dashboard from './pages/Dashboard';
 import { ProtectedRoute } from './pages/ProtectedRoute';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Profile } from './pages/Profile';
+import { UserContext } from './pages/UserContext';
 
 function App() {
 
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState(null);
+
+  const value = useMemo(() => ({ user, setUser }), [user, setUser]);
 
   return (
     <BrowserRouter>
       <ChakraProvider>
         <Box
+          display={"flex"}
+          alignItems={"center"}
+          flexDirection={"column"}
+          justifyContent="center"
           bg="linear-gradient(45deg, #faaca8 10%, #ddd6f3 90%)"
         >
         <Flex justify={'space-evenly'} align={"center"}
+        h="70px"
+        w="400px"
         margin="0"
         padding="0"
         >
@@ -62,6 +71,8 @@ function App() {
 
         </Flex>
 
+        <UserContext.Provider value={value}>
+
         <Routes>
           <Route path='login/*' element={<Login setUser={setUser} />} />
           <Route path='*' element={<Navigate to={"/login"} />} />
@@ -72,6 +83,9 @@ function App() {
             <Route path="/profile" element={ <Profile />  }/>
           </Route>
         </Routes>
+        
+        </UserContext.Provider>
+
         </Box>
       </ChakraProvider>
     </BrowserRouter>

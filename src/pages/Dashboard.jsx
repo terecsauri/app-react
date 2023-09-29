@@ -8,7 +8,7 @@ export default function Dashboard() {
     return (
         <Flex 
         w={"100vw"}
-        h={"calc(100vh - 35.2px)"}
+        h={"calc(100vh - 70px)"}
         justify={"center"}
         align={"center"}
         >

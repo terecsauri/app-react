@@ -4,10 +4,13 @@
 import { Box, Button, Checkbox, Container, FormControl, FormLabel, HStack, Heading, Image, Input, InputGroup, InputRightElement, Stack, useToast,} from "@chakra-ui/react"
 import { useNavigate } from "react-router-dom";
 import starFall from "../../public/star-fall-svgrepo-com.svg"
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
+import { UserContext } from "./UserContext";
 
 export const Login = ((props) => {
   const [usuarioEntero, setUsuarioEntero] = useState({});
+
+  const { user, setUser } = useContext(UserContext);
 
   const [usuario, setUsuario] = useState("");
   const [correctUsername, setCorrectUsername] = useState("");
@@ -61,9 +64,9 @@ export const Login = ((props) => {
   
   useEffect(() => {
     if (datosFetcheados) {
-    console.log(correctUsername + ", " + correctPassword);
+    console.log(usuarioEntero.name.first + ", " + correctUsername + ", " + correctPassword);
     toast({
-      title: 'Estos son los datos de login',
+      title: usuarioEntero.name.first + ', estos son los datos de login',
       description: correctUsername + ", " + correctPassword,
       status: 'info',
       duration: 100000000000,
@@ -77,7 +80,7 @@ export const Login = ((props) => {
     if (usuario === correctUsername && password === correctPassword) {
       navigate("/dashboard");
 
-      props.setUser(correctUsername);
+      props.setUser(usuarioEntero);
       toast.closeAll();
 
     }
@@ -88,17 +91,15 @@ export const Login = ((props) => {
     <Box
       boxSize={"full"}
       w={"100vw"}
-      h={"calc(100vh - 35.2px)"}
-      margin={"0"}
-      paddingTop={"0"}
+      h={"calc(100vh - 70px)"}
       py={"8"}
       px={"0"}
       display={"flex"}
       justifyContent={"center"}
       alignItems={"center"}
     >
-    <Stack maxW={"lg"} spacing="8">
-      <Stack spacing="2" display={"flex"} justifyContent={"center"} alignItems={"center"}>
+    <Stack maxW={"lg"} display={"flex"} justifyContent={"center"} alignItems={"center"} spacing="24">
+      <Stack h="1px" display={"flex"} justifyContent={"center"} alignItems={"center"}>
         <Image boxSize={"84px"} src={starFall} alt="estrellita" />
         <Stack
           spacing={{
@@ -139,7 +140,7 @@ export const Login = ((props) => {
         <Stack spacing="6">
           <Stack spacing="5">
             <FormControl>
-              <FormLabel>Usuario</FormLabel>
+              <FormLabel>👤 Usuario</FormLabel>
               <Input
               borderColor={"purple.900"}
               _hover={{
@@ -149,7 +150,7 @@ export const Login = ((props) => {
               id="username" name="username" onChange={(event)=>{hanldeChange(event)}} />
             </FormControl>
             <FormControl>
-              <FormLabel htmlFor="password">Contraseña</FormLabel>
+              <FormLabel htmlFor="password">*️⃣ Contraseña</FormLabel>
               <InputGroup>
                   <Input
                     type={show ? 'text' : 'password'}
