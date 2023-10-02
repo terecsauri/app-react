@@ -1,9 +1,13 @@
 import { Button, Card, CardBody, CardHeader, Flex, Heading, Text } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
+import { useContext } from 'react';
+import { UserContext } from './UserContext';
 
 export default function Dashboard() {
 
     const navigate = useNavigate();
+
+    const { user } = useContext(UserContext);
 
     return (
         <Flex 
@@ -14,7 +18,7 @@ export default function Dashboard() {
         >
             <Card spacing="8" display={"flex"} flexDir={"column"} alignItems={'center'} justifyContent={"center"}>
                 <CardHeader>
-                    <Heading size='md'>Buenos días</Heading>
+                    <Heading size='md'>Buenos días, {user.name.first}</Heading>
                 </CardHeader>
                 <CardBody display={"flex"} flexDir={"column"} alignItems={"center"} justifyContent={"center"}>
                     <Text>Acabas de iniciar sesión</Text>
