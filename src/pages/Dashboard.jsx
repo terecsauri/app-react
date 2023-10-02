@@ -47,6 +47,7 @@ export default function Dashboard() {
             background={"purple.100"}
             _hover={{
               background: "purple.300",
+              border: "0"
             }}
             onClick={() => navigate("/profile")}
           >
