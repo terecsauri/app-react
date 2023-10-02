@@ -1,7 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import { Box, Button, Checkbox, Container, FormControl, FormLabel, HStack, Heading, Image, Input, InputGroup, InputRightElement, Stack, useToast,} from "@chakra-ui/react"
+import { Box, Button, FormControl, FormLabel, Heading, Image, Input, InputGroup, InputRightElement, Stack, useToast,} from "@chakra-ui/react"
+import { AtSignIcon, LockIcon } from '@chakra-ui/icons'
 import { useNavigate } from "react-router-dom";
 import starFall from "../assets/star-fall-svgrepo-com.svg";
 import { useContext, useEffect, useRef, useState } from "react";
@@ -140,7 +141,7 @@ export const Login = ((props) => {
         <Stack spacing="6">
           <Stack spacing="5">
             <FormControl>
-              <FormLabel>👤 Usuario</FormLabel>
+              <FormLabel><AtSignIcon /> Usuario</FormLabel>
               <Input
               borderColor={"purple.900"}
               _hover={{
@@ -150,7 +151,7 @@ export const Login = ((props) => {
               id="username" name="username" onChange={(event)=>{hanldeChange(event)}} />
             </FormControl>
             <FormControl>
-              <FormLabel htmlFor="password">*️⃣ Contraseña</FormLabel>
+              <FormLabel htmlFor="password"><LockIcon /> Contraseña</FormLabel>
               <InputGroup>
                   <Input
                     type={show ? 'text' : 'password'}
