@@ -3,7 +3,7 @@
 /* eslint-disable no-unused-vars */
 import { Box, Button, Checkbox, Container, FormControl, FormLabel, HStack, Heading, Image, Input, InputGroup, InputRightElement, Stack, useToast,} from "@chakra-ui/react"
 import { useNavigate } from "react-router-dom";
-import starFall from "../../public/star-fall-svgrepo-com.svg"
+import starFall from "../assets/star-fall-svgrepo-com.svg";
 import { useContext, useEffect, useRef, useState } from "react";
 import { UserContext } from "./UserContext";
 
@@ -173,12 +173,6 @@ export const Login = ((props) => {
               </InputGroup>
             </FormControl>
           </Stack>
-          <HStack justify="space-between">
-            <Checkbox defaultChecked>Recuérdame</Checkbox>
-            <Button variant="text" size="sm">
-              ¿Has olvidado tu contraseña?
-            </Button>
-          </HStack>
           <Stack spacing="6">
               <Button
               background={"purple.50"}
