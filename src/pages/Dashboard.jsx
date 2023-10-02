@@ -1,4 +1,4 @@
-import { Button, Card, CardBody, CardHeader, Flex, Heading, Text } from "@chakra-ui/react";
+import { Avatar, Button, Card, CardBody, CardHeader, Flex, Heading, Text } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { useContext } from 'react';
 import { UserContext } from './UserContext';
@@ -21,6 +21,7 @@ export default function Dashboard() {
                     <Heading size='md'>Buenos días, {user.name.first}</Heading>
                 </CardHeader>
                 <CardBody display={"flex"} flexDir={"column"} alignItems={"center"} justifyContent={"center"}>
+                    <Avatar name={user.name.first} src={user.picture.large} size="2xl" />
                     <Text>Acabas de iniciar sesión</Text>
                     <Text>Ahora puedes ir a tu perfil</Text>
                     <Button 
