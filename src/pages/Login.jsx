@@ -207,6 +207,7 @@ export const Login = (props) => {
                       background={"purple.50"}
                       _hover={{
                         background: "purple.300",
+                        border: "0"
                       }}
                       h="1.75rem"
                       size="sm"
@@ -223,6 +224,7 @@ export const Login = (props) => {
                 background={"purple.50"}
                 _hover={{
                   background: "purple.300",
+                  border: "0"
                 }}
                 onClick={handleSubmit}
               >
