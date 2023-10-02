@@ -71,6 +71,7 @@ export const Login = ((props) => {
       description: correctUsername + ", " + correctPassword,
       status: 'info',
       duration: 100000000000,
+      position: "top-right",
       isClosable: true,
     });
     }
