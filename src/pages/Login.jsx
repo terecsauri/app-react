@@ -98,7 +98,7 @@ export const Login = (props) => {
     if (usuario === correctUsername && password === correctPassword) {
       navigate("/dashboard");
 
-      props.setUser(usuarioEntero);
+      setUser(usuarioEntero);
       toast.closeAll();
     }
   };

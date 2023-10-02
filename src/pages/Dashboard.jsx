@@ -21,6 +21,7 @@ export default function Dashboard() {
     <Flex
       w={"100vw"}
       h={"calc(100vh - 70px)"}
+      direction={"column"}
       justify={"center"}
       align={"center"}
     >
@@ -42,12 +43,12 @@ export default function Dashboard() {
         >
           <Avatar name={user.name.first} src={user.picture.large} size="2xl" />
           <Text>Acabas de iniciar sesión</Text>
-          <Text>Ahora puedes ir a tu perfil</Text>
+          <Text>Ahora puedes acceder a tu perfil</Text>
           <Button
             background={"purple.100"}
             _hover={{
               background: "purple.300",
-              border: "0"
+              border: "0",
             }}
             onClick={() => navigate("/profile")}
           >
