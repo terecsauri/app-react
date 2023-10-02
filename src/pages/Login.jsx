@@ -167,7 +167,7 @@ export const Login = (props) => {
           <Stack spacing="6">
             <Stack spacing="5">
               <FormControl>
-                <FormLabel>
+                <FormLabel fontWeight='600'>
                   <AtSignIcon /> Usuario
                 </FormLabel>
                 <Input
@@ -184,7 +184,7 @@ export const Login = (props) => {
                 />
               </FormControl>
               <FormControl>
-                <FormLabel htmlFor="password">
+                <FormLabel htmlFor="password" fontWeight='600'>
                   <LockIcon /> Contraseña
                 </FormLabel>
                 <InputGroup>
